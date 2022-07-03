@@ -23,11 +23,11 @@ export function Provider({ children }: PropsWithChildren<any>) {
 }
 
 export function useStore<R>(f: (state: RootState) => R): R {
-  const reducState = useContext(Context);
+  const state = useContext(Context);
 
-  if (reducState === null) {
+  if (state === null) {
     throw new Error(`Component must be wrapped by ${Provider.name}`);
   }
 
-  return f(reducState);
+  return f(state);
 }
