@@ -1,7 +1,6 @@
 import {
   decrement as decrementCounter,
   increment as incrementCounter,
-  reset as resetCounter,
   setValue as setCounterValue,
 } from './slice';
 
@@ -31,6 +30,6 @@ function sleep(): Promise<void> {
 
 export function reset() {
   sleep().then(() => {
-    dispatch(resetCounter());
+    dispatch(setCounterValue(0));
   });
 }

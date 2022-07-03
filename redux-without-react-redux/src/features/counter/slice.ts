@@ -18,11 +18,8 @@ export const slice = createSlice({
     setValue: (state, action: PayloadAction<number>) => {
       state.value = action.payload;
     },
-    reset: (state) => {
-      state.value = 0;
-    },
   },
 });
 
-export const { increment, setValue, decrement, reset } = slice.actions;
+export const { increment, setValue, decrement } = slice.actions;
 export const reducer = slice.reducer;
