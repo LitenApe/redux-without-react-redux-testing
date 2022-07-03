@@ -1,4 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { PayloadAction, configureStore } from '@reduxjs/toolkit';
+
 import { counterReducer } from '../counter';
 
 const store = configureStore({
@@ -16,5 +17,16 @@ export function subscribe(f: (state: RootState) => void) {
   });
 }
 
+export function dispatch<Payload>(
+  f: PayloadAction<Payload> | ((state: RootState) => void),
+) {
+  const state = store.getState();
+
+  if (typeof f === 'function') {
+    return f(state);
+  }
+
+  return store.dispatch(f);
+}
+
 export const getState = store.getState;
-export const dispatch = store.dispatch;

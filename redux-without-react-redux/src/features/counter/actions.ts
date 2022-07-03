@@ -4,18 +4,17 @@ import {
   reset as resetCounter,
   setValue as setCounterValue,
 } from './slice';
-import { dispatch, getState } from '../store';
+
+import { dispatch } from '../store';
 
 export function increment() {
   dispatch(incrementCounter());
 }
 
 export function double() {
-  const {
-    counter: { value },
-  } = getState();
-
-  dispatch(setCounterValue(value * 2));
+  dispatch(({ counter: { value } }) => {
+    dispatch(setCounterValue(value * 2));
+  });
 }
 
 export function decrement() {
