@@ -2,12 +2,20 @@ import {
   decrement as decrementCounter,
   increment as incrementCounter,
   reset as resetCounter,
+  setValue as setCounterValue,
 } from './slice';
-
-import { dispatch } from '../store';
+import { dispatch, store } from '../store';
 
 export function increment() {
   dispatch(incrementCounter());
+}
+
+export function double() {
+  const {
+    counter: { value },
+  } = store.getState();
+
+  dispatch(setCounterValue(value * 2));
 }
 
 export function decrement() {

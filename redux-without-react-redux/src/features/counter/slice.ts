@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: { value: number } = {
@@ -14,11 +15,14 @@ export const slice = createSlice({
     decrement: (state) => {
       state.value -= 1;
     },
+    setValue: (state, action: PayloadAction<number>) => {
+      state.value = action.payload;
+    },
     reset: (state) => {
       state.value = 0;
     },
   },
 });
 
-export const { increment, decrement, reset } = slice.actions;
+export const { increment, setValue, decrement, reset } = slice.actions;
 export const reducer = slice.reducer;

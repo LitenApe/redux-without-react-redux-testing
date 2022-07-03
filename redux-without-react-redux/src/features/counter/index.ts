@@ -1,2 +1,2 @@
 export { slice as counterSlice, reducer as counterReducer } from './slice';
-export { increment, decrement, reset } from './actions';
+export { increment, double, decrement, reset } from './actions';

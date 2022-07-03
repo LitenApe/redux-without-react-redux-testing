@@ -1,4 +1,4 @@
-import { decrement, increment, reset } from './features/counter';
+import { decrement, double, increment, reset } from './features/counter';
 
 import { useStore } from './features/store';
 
@@ -11,6 +11,7 @@ function App() {
       <p>The value of counter is currently: {value} </p>
       <div>
         <button onClick={() => increment()}>increment</button>
+        <button onClick={() => double()}>double</button>
         <button onClick={() => decrement()}>decrement</button>
         <button onClick={() => reset()}>reset</button>
       </div>
