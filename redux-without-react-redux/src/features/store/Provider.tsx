@@ -5,18 +5,20 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { RootState, store as root } from './store';
+import { RootState, getState, subscribe } from './store';
 
-const initialState = root.getState();
+const initialState = getState();
 const Context = createContext<RootState | null>(null);
 
 export function Provider({ children }: PropsWithChildren<any>) {
   const [state, setState] = useState<RootState>(initialState);
 
   useEffect(() => {
-    root.subscribe(() => {
-      setState(root.getState());
-    });
+    const unsubscribe = subscribe((state) => setState(state));
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return <Context.Provider value={state}>{children}</Context.Provider>;
