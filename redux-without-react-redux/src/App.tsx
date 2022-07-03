@@ -3,9 +3,7 @@ import { decrement, increment, reset } from './features/counter';
 import { useStore } from './features/store';
 
 function App() {
-  const {
-    counter: { value },
-  } = useStore();
+  const value = useStore((state) => state.counter.value);
 
   return (
     <div className="App">

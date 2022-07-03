@@ -22,12 +22,12 @@ export function Provider({ children }: PropsWithChildren<any>) {
   return <Context.Provider value={state}>{children}</Context.Provider>;
 }
 
-export function useStore(): RootState {
+export function useStore<R>(f: (state: RootState) => R): R {
   const reducState = useContext(Context);
 
   if (reducState === null) {
     throw new Error(`Component must be wrapped by ${Provider.name}`);
   }
 
-  return reducState;
+  return f(reducState);
 }
