@@ -1,5 +1,6 @@
 import { PayloadAction, configureStore } from '@reduxjs/toolkit';
 
+import type { Unsubscribe } from 'redux';
 import { counterReducer } from '../counter';
 
 const store = configureStore({
@@ -10,7 +11,7 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 
-export function subscribe(f: (state: RootState) => void) {
+export function subscribe(f: (state: RootState) => void): Unsubscribe {
   return store.subscribe(() => {
     const state = store.getState();
     f(state);
