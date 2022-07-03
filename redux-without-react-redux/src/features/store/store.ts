@@ -18,15 +18,17 @@ export function subscribe(f: (state: RootState) => void) {
 }
 
 export function dispatch<Payload>(
-  f: PayloadAction<Payload> | ((state: RootState) => void),
-) {
+  f: PayloadAction<Payload> | ((state: RootState) => unknown),
+): void {
   const state = store.getState();
 
   if (typeof f === 'function') {
-    return f(state);
+    f(state);
+    return;
   }
 
-  return store.dispatch(f);
+  store.dispatch(f);
+  return;
 }
 
 export const getState = store.getState;
